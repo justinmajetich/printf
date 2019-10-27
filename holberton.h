@@ -12,4 +12,8 @@ char* fmt_mngr(char *);
 char *(*fmt_func_caller(char *))(char *s);
 char *(*flag_func_caller(char *))(char *s);
 
+/* Custom format specifiers */
+char *R_rot13(char *s);
+char *r_reverse(char *s);
+
 #endif
