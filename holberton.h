@@ -51,6 +51,8 @@ char *(*ptr_func_mngr(char *))(char *, char *);
 /* FORMATTING FUNCTIONS */
 
 /* HELPER FUNCTIONS */
+int _atoi(char *s);
+int _strlen(char *s);
 
 /* Custom format specifiers */
 char *R_rot13(char *s);
