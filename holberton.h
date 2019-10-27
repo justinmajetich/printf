@@ -2,6 +2,7 @@
 #define HOLBERTON_H
 
 #include <stdarg.h>
+#include <limits.h>
 
 /* STRUCTURES */
 /**
@@ -42,20 +43,18 @@ int _printf(const char *format, ...);
 
 /* MANAGER FUNCTIONS */
 char *fmt_mngr(char *, char *);
-char *(*li_func_mngr(char *))(char *, long int);
-char *(*lu_func_mngr(char *))(char *, unsigned long);
-char *(*ptr_func_mngr(char *))(char *, char *);
+char *(*li_fp_mngr(char *))(char *, long int);
+char *(*lu_fp_mngr(char *))(char *, unsigned long);
+char *(*ptr_fp_mngr(char *))(char *, char *);
 
 /* CONVERSION FUNCTIONS */
+char *r_reverse(char *s);
+char *R_rot13(char *s);
 
 /* FORMATTING FUNCTIONS */
 
 /* HELPER FUNCTIONS */
 int _atoi(char *s);
 int _strlen(char *s);
-
-/* Custom format specifiers */
-char *R_rot13(char *s);
-char *r_reverse(char *s);
 
 #endif

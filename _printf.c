@@ -39,13 +39,13 @@ int _printf(const char *format, ...)
 			{
 				case 0:
 					/* assign function and to retrieve converted arg */
-					cnvrt_li = li_func_mngr(index);
+					cnvrt_li = li_fp_mngr(index);
 					cnvrtd_str = cnvrt_li(index, va_arg(args, long int));
 				case 1:
-					cnvrt_lu = lu_func_mngr(index);
+					cnvrt_lu = lu_fp_mngr(index);
 					cnvrtd_str = cnvrt_lu(index, va_arg(args, unsigned long));
 				case 2:
-					cnvrt_ptr = ptr_func_mngr(index);
+					cnvrt_ptr = ptr_fp_mngr(index);
 					cnvrtd_str = cnvrt_ptr(index, va_arg(args, char *));
 			}
 			/* format converted arg according to flags */
