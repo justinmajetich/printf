@@ -10,7 +10,8 @@
 
 
 #### Conversion Specifiers
-Format specifiers are implemented as follows: `%[flags][width][.precision][length]type`
+Format specifiers are implemented as follows: `%[flags][width][.precision][length]type`.
+
 Type | Description
 -------|----------------------
 c | Single character
