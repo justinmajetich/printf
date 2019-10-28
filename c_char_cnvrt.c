@@ -8,7 +8,6 @@
 */
 char *c_char_cnvrt(long int c)
 {
-	int i;
 	char *print_char;
 
 	print_char = malloc(sizeof(char) + 1);
