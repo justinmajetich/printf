@@ -6,10 +6,10 @@
  *
  * Return: format spec on Success, NULL if invalid spec
  */
-char *cpy_fmt_spec(char *src)
+char *cpy_fmt_spec(const char *src)
 {
 	int i, j;
-	int size_spec = prec_spec = 0; /* to track instance of size/precision specs */
+	int size_spec = 0, prec_spec = 0; /* track instance of size/precision specs */
 	char *valid_specs = "dicuoxXbsSrRp"; /* possible conversion specifiers */
 	char *fmt_spec;
 
@@ -27,7 +27,7 @@ char *cpy_fmt_spec(char *src)
 					return (NULL);
 
 				/* return initialized fmt_spec */
-				return (_strncpy(fmt_spec, src, (i + 1)));
+				return (_revstr(_strncpy(fmt_spec, src, (i + 1))));
 			}
 		/**
 		 * if given char is not a conversion spec, check to see if
@@ -35,7 +35,7 @@ char *cpy_fmt_spec(char *src)
 		 * of digits, but only one size or precision specifier.
 		 */
 		/* if not a digit */
-		if (src[i] < '0' || src[i] > 9)
+		if (src[i] < '0' || src[i] > '9')
 		{
 			/* if first occurence of 'h' or 'l' */
 			if ((src[i] == 'h' || src[i] == 'l') && (!size_spec))

@@ -53,7 +53,7 @@ char *_itoa(int num, char *buffer, int base)
  *
  * Return: string copied to i.e dest
  */
-char *_strncpy(char *dest, char *src, int n)
+char *_strncpy(char *dest, const char *src, int n)
 {
 	int i = 0;
 
@@ -71,3 +71,5 @@ char *_strncpy(char *dest, char *src, int n)
 	}
 	return (dest);
 }
+
+

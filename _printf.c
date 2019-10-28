@@ -15,9 +15,9 @@ int _printf(const char *format, ...)
 	char *fmttd_str; /* post-formatting string */
 	char *dest_buff[1024]; /* string to return */
 
-	char *(*cnvrt_li)(char *, long int);
-	char *(*cnvrt_lu)(char *, unsigned long);
-	char *(*cnvrt_ptr)(char *, char *);
+	char *(*cnvrt_li)(long int);
+	char *(*cnvrt_lu)(unsigned long);
+	char *(*cnvrt_ptr)(char *);
 
 	/* initialize arg list */
 	va_start(args, format);
@@ -40,13 +40,13 @@ int _printf(const char *format, ...)
 				case 0:
 					/* assign function and to retrieve converted arg */
 					cnvrt_li = li_fp_mngr(fmt_spec);
-					cnvrtd_str = cnvrt_li(fmt_spec, va_arg(args, long int));
+					cnvrtd_str = cnvrt_li(va_arg(args, long int));
 				case 1:
 					cnvrt_lu = lu_fp_mngr(fmt_spec);
-					cnvrtd_str = cnvrt_lu(fmt_spec, va_arg(args, unsigned long));
+					cnvrtd_str = cnvrt_lu(va_arg(args, unsigned long));
 				case 2:
 					cnvrt_ptr = ptr_fp_mngr(fmt_spec);
-					cnvrtd_str = cnvrt_ptr(fmt_spec, va_arg(args, char *));
+					cnvrtd_str = cnvrt_ptr(va_arg(args, char *));
 			}
 			/* format converted arg according to flags */
 			fmttd_str = fmt_mngr(fmt_spec, cnvrtd_str);

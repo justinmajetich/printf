@@ -4,7 +4,7 @@
 * @s: string to be encoded
 * Return: Rot13'd string
 */
-char *R_rot13(char *s)
+char *R_rot13_cnvrt(char *s)
 {
 	int i, j; /*loop iterating variables*/
 	/* character array of upper and lower alpha */

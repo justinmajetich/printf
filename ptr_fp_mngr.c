@@ -6,7 +6,7 @@
  *
  * Return: function pointer on Success, NULL on Fail
  */
-char *(*ptr_fp_mngr(char *spec))(char *s, char *arg)
+char *(*ptr_fp_mngr(char *fmt_spec))(char *)
 {
 	/* define struct of function pointers */
 	ptr_fps fps[] = {
@@ -23,7 +23,7 @@ char *(*ptr_fp_mngr(char *spec))(char *s, char *arg)
 	while (fps[i].spec)
 	{
 		/* if match is found, return function pointer */
-		if (*fps[i].spec == *s)
+		if (*fps[i].spec == fmt_spec[0])
 			return (fps[i].f);
 		i++;
 	}
