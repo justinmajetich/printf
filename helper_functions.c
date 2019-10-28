@@ -59,7 +59,7 @@ char *_itoa(int value, char *buffer, int base)
 	if (value < 0 && base == 10)
 		buffer[i++] = '-';
 	buffer[i] = '\0';
-	return r_reverse(buffer);
+	return _revstr(buffer);
 }
 /**
  * *_strncpy - copies n bytes of src to dest string
@@ -95,7 +95,7 @@ char *_strncpy(char *dest, const char *src, int n)
  */
 char *_revstr(char *s)
 {
-	int i, j = 0, length, half;
+	int i = 0, j = 0, length = 0, half = 0;
 	char *rev = s;
 	char buff;
 
@@ -106,13 +106,11 @@ char *_revstr(char *s)
 	else
 		half = (length - 1) / 2;
 
-	for (i = length - 1; i >= half;)
+	for (i = length - 1; i >= half; j++, i--)
 	{
 		buff = rev[j];
 		rev[j] = s[i];
 		s[i] = buff;
-
-		j++;
-		i--;
 	}
+	return (s);
 }

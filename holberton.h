@@ -1,9 +1,11 @@
 #ifndef HOLBERTON_H
 #define HOLBERTON_H
 
+#include <unistd.h>
 #include <stdarg.h>
 #include <limits.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 /* STRUCTURES */
 /**
@@ -65,6 +67,9 @@ char *R_rot13_cnvrt(char *);
 char *s_string_cnvrt(char *);
 char *S_nonprint_cnvrt(char *);
 char *p_pointer_cnvrt(char *);
+char *c_char_cnvrt(long int);
+char *d_decimal_cnvrt(long int);
+char *i_int_cnvrt(long int);
 
 /* FORMATTING FUNCTIONS */
 
@@ -72,6 +77,8 @@ char *p_pointer_cnvrt(char *);
 int _atoi(char *);
 int _strlen(char *);
 char *_strncpy(char *, const char *, int);
+char *_revstr(char *);
+void _print_string(char *s);
 int arg_type_identifier(char *);
 char *cpy_fmt_spec(const char *);
 #endif
