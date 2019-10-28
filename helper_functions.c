@@ -17,7 +17,7 @@ int _strlen(char *s)
 	return (len);
 }
 /**
-* _atoi - Function that finds the length of a string
+* _atoi - Function that converts a char to an int
 * @s: string that is converted to an int
 *
 * Return: converted string
@@ -35,12 +35,30 @@ int _atoi(char *s)
 	return (result);
 }
 /**
-*
-*
-*
+* _itoa - Function that converts an int to a char
+* @value: value to be converted to a string
+* @buffer: array that stores null-termintated string result
+* @base: value of the string
+* Return: Converted string
 */
-char *_itoa(int num, char *buffer, int base)
+char *_itoa(int value, char *buffer, int base)
 {
-	
+	int i = 0, a;
 
+	while (value)
+	{
+		a = value % base;
+		if (a >= 10)
+			buffer[i++] = 65 + (a - 10);
+		else
+			buffer[i++] = 48 + a;
+		value = value / base;
+	}
+	if (i == 0)
+		buffer[i++] = '\0';
+	if (value < 0 && base == 10)
+		buffer[i++] = '-';
+	buffer[i] = '\0';
+	return r_reverse(buffer);
 }
+
