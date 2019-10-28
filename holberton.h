@@ -68,8 +68,8 @@ char *s_string_cnvrt(char *s);
 char *S_nonprint_cnvrt(char *);
 char *p_pointer_cnvrt(char *);
 char *c_char_cnvrt(long int c);
-char *d_decimal_cnvrt(long int);
-char *i_int_cnvrt(long int);
+char *d_decimal_cnvrt(long int num);
+char *i_int_cnvrt(long int num);
 
 /* FORMATTING FUNCTIONS */
 
