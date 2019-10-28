@@ -64,10 +64,10 @@ char *(*ptr_fp_mngr(char *))(char *);
 /* CONVERSION FUNCTIONS */
 char *r_reverse_cnvrt(char *);
 char *R_rot13_cnvrt(char *);
-char *s_string_cnvrt(char *);
+char *s_string_cnvrt(char *s);
 char *S_nonprint_cnvrt(char *);
 char *p_pointer_cnvrt(char *);
-char *c_char_cnvrt(long int);
+char *c_char_cnvrt(long int c);
 char *d_decimal_cnvrt(long int);
 char *i_int_cnvrt(long int);
 
