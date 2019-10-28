@@ -6,12 +6,27 @@
  *
  * Return: function pointer on Success, NULL on Fail
  */
-char *(*lu_fp_mngr(char *spec)(char * s, unsigned long arg))
+char *(*lu_fp_mngr(char *spec))(char *s, unsigned long arg)
 {
-	/* struct variable define */
+	/* define struct of function pointers */
+	lu_fps fps[] = {
+		{"u", u_unsigned_cnvrt},
+		{"o", o_octal_cnvrt},
+		{"x", x_lowhex_cnvrt},
+		{"X", X_uphex_cnvrt},
+		{"b", b_binary_cnvrt},
+		{NULL, NULL}
+	};
+	int i = 0;
 
-	/* loop to determine fmt specifier */
-		/* return proper function pointer */
-
-	/* return NULL(?) on fail */
+	/* parse struct to match specifier */
+	while (fps[i].spec)
+	{
+		/* if match is found, return function pointer */
+		if (*fps[i].spec == *s)
+			return (fps[i].f);
+		i++
+	}
+	/* return NULL if match not found */
+	return (NULL);
 }

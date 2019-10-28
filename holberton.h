@@ -6,37 +6,37 @@
 
 /* STRUCTURES */
 /**
- * li_fps - functions to convert long int args
+ * li_func_pointers - functions to convert long int args
  * @spec: conversion specifier
  * @f: function pointer
  */
-struct li_fps
+typedef struct li_func_pointers
 {
 	char *spec;
 	char *(*f)(long int);
-};
+} li_fps;
 
 /**
- * lu_fps - functions to convert long unsigned args
+ * lu_func_pointers - functions to convert long unsigned args
  * @spec: conversion specifier
  * @f: function pointer
  */
-struct lu_fps
+typedef struct lu_func_pointers
 {
 	char *spec;
-	char *(*f)(long int);
-};
+	char *(*f)(unsigned long);
+} lu_fps;
 
 /**
- * ptr_fps - functions to convert pointer args
+ * ptr_func_pointers - functions to convert pointer args
  * @spec: conversion specifier
  * @f: function pointer
  */
-struct ptr_fps
+struct ptr_func_pointers
 {
 	char *spec;
-	char *(*f)(long int);
-};
+	char *(*f)(char *);
+} ptr_fps;
 
 /* PARENT FUNCTION */
 int _printf(const char *format, ...);
@@ -56,5 +56,7 @@ char *R_rot13(char *s);
 /* HELPER FUNCTIONS */
 int _atoi(char *s);
 int _strlen(char *s);
-
+char *_strncpy(char *dest, char *src, int n);
+int arg_type_identifier(char *);
+char *cpy_fmt_spec(char *);
 #endif
