@@ -87,5 +87,32 @@ char *_strncpy(char *dest, const char *src, int n)
 	}
 	return (dest);
 }
+/**
+ * _revstr - reverse string
+ * @s:
+ *
+ * Return: reversed string
+ */
+char *_revstr(char *s)
+{
+	int i, j = 0, length, half;
+	char *rev = s;
+	char buff;
 
+	length = _strlen(s);
 
+	if (length % 2 == 0)
+		half = length / 2;
+	else
+		half = (length - 1) / 2;
+
+	for (i = length - 1; i >= half;)
+	{
+		buff = rev[j];
+		rev[j] = s[i];
+		s[i] = buff;
+
+		j++;
+		i--;
+	}
+}
