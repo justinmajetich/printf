@@ -56,7 +56,7 @@ typedef struct arg_type_index
 int _printf(const char *format, ...);
 
 /* MANAGER FUNCTIONS */
-char *fmt_mngr(char *, char *);
+char *fmt_mngr(va_list, char *);
 char *(*li_fp_mngr(char *))(long int);
 char *(*lu_fp_mngr(char *))(unsigned long);
 char *(*ptr_fp_mngr(char *))(char *);

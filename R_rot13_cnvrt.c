@@ -11,6 +11,12 @@ char *R_rot13_cnvrt(char *s)
 	char *in = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 	/* character array with alpha index elements shifted left 13 spaces */
 	char *out = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
+	char *encoded;
+
+	/* allocate for encoded, plus null-byte */
+	encoded = malloc(sizeof(*s) * (_strlen(s) + i));
+	if (encoded == NULL)
+		return (NULL);
 
 	/*  Loop through string until null byte*/
 	for (i = 0; s[i] != '\0'; i++)
@@ -22,12 +28,14 @@ char *R_rot13_cnvrt(char *s)
 			if (s[i] == in[j])
 			{
 				/* Replace string letter with Rot13 alpha*/
-				s[i] = out[j];
+				encoded[i] = out[j];
 				/* break out of loop to avoid reversing letter */
 				break;
 			}
 		}
 	}
+	/* terminate new str with null-byte */
+	encoded[i] = '\0';
 	/* return the encoded string*/
-	return (s);
+	return (encoded);
 }

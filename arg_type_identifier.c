@@ -10,12 +10,12 @@ int arg_type_identifier(char *fmt_spec)
 {
 	/**
 	 * conversion specs with associated data type signifier,
-	 * (0: long int, 1: unsigned long, 2: char *)
+	 * Return: (0: int, 1: long int, 2: unsigned, 3: unsigned long, 4: char *)
 	 */
 	arg_t index[] = {
 		{"dic", 0},
-		{"uoxXb", 1},
-		{"sSrRp", 2},
+		{"uoxXb", 2},
+		{"sSrRp", 4},
 		{NULL, -1}
 	};
 
@@ -26,6 +26,12 @@ int arg_type_identifier(char *fmt_spec)
 		for (col = 0; index[row].spec[col]; col++)
 			/* if match found return data type signifier */
 			if (index[row].spec[col] == fmt_spec[0])
-				return (index[row].type);
+			{
+				/* check for size mod */
+				if (fmt_spec[1] == 'l')
+					return ((index[row].type) + 1);
+				else
+					return (index[row].type);
+			}
 	return (-1);
 }
