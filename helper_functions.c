@@ -115,7 +115,7 @@ char *_revstr(char *s)
 	char buff;
 
 	length = _strlen(s);
-	
+
 	if (length % 2 == 0)
 		half = length / 2;
 	else
