@@ -11,7 +11,6 @@ char *u_unsigned_cnvrt(unsigned long int num)
 {
 	char *u_to_s;
 	
-	printf("made it here\n");
 	/* Allocate space for buffer */
 	u_to_s = malloc(sizeof(char) * 100);
 	if (u_to_s == NULL)
