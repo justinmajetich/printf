@@ -62,14 +62,15 @@ char *(*lu_fp_mngr(char *))(unsigned long);
 char *(*ptr_fp_mngr(char *))(char *);
 
 /* CONVERSION FUNCTIONS */
-char *r_reverse_cnvrt(char *);
-char *R_rot13_cnvrt(char *);
+char *r_reverse_cnvrt(char *s);
+char *R_rot13_cnvrt(char *s);
 char *s_string_cnvrt(char *s);
 char *S_nonprint_cnvrt(char *);
 char *p_pointer_cnvrt(char *);
 char *c_char_cnvrt(long int c);
 char *d_decimal_cnvrt(long int num);
 char *i_int_cnvrt(long int num);
+char *u_unsigned_cnvrt(unsigned long int num);
 
 /* FORMATTING FUNCTIONS */
 
