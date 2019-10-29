@@ -41,25 +41,41 @@ int _atoi(char *s)
 * @base: value of the string
 * Return: Converted string
 */
-char *_itoa(int value, char *buffer, int base)
+char *_itoa(long int number, char *buffer, int base)
 {
-	int i = 0, a;
+	int sign = 1, i = 0;
+	long int remainder = 0;
 
-	while (value)
+	/* if number is 0, hard code result */
+	if (number == 0)
 	{
-		a = value % base;
-		if (a >= 10)
-			buffer[i++] = 65 + (a - 10);
-		else
-			buffer[i++] = 48 + a;
-		value = value / base;
+		buffer[i++] = '0';
+		buffer[i] = '\0';
 	}
-	if (i == 0)
-		buffer[i++] = '\0';
-	if (value < 0 && base == 10)
+	/* if negative, convert to pos and track sign */
+	if (number < 0 && base == 10)
+	{
+		number *= -1;
+		sign *= -1;
+	}
+	/* if number is not 0 */
+	while (number)
+	{
+		remainder = number % base;
+		if (remainder >= 10)
+			buffer[i++] = 'a' + (remainder - 10);
+		else
+			buffer[i++] = '0' + remainder;
+		number /= base;
+	}
+	if (sign < 0)
 		buffer[i++] = '-';
-	buffer[i] = '\0';
-	return _revstr(buffer);
+
+	/* terminate string */
+	if (number)
+		buffer[i] = '\0';
+
+	return (_revstr(buffer));
 }
 /**
  * *_strncpy - copies n bytes of src to dest string
