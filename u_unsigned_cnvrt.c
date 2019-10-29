@@ -10,7 +10,8 @@ char *_utoa(unsigned long int number, char *buffer, int base);
 char *u_unsigned_cnvrt(unsigned long int num)
 {
 	char *u_to_s;
-
+	
+	printf("made it here\n");
 	/* Allocate space for buffer */
 	u_to_s = malloc(sizeof(char) * 100);
 	if (u_to_s == NULL)
@@ -28,7 +29,7 @@ char *u_unsigned_cnvrt(unsigned long int num)
 */
 char *_utoa(unsigned long int number, char *buffer, int base)
 {
-	int sign = 1, i = 0;
+	int i = 0;
 	long int remainder = 0;
 
 	/* if number is 0, hard code result */
@@ -36,7 +37,6 @@ char *_utoa(unsigned long int number, char *buffer, int base)
 	{
 		buffer[i++] = '0';
 		buffer[i] = '\0';
-	}
 	}
 	/* if number is not 0 */
 	while (number)
