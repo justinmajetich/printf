@@ -9,7 +9,6 @@ int _printf(const char *format, ...)
 {
 	va_list args;
 	unsigned int fmt_i, dest_i, i; /* string iterators */
-	unsigned int arg_type;
 	char *fmt_spec; /* isolated format specifier */
 	char *cnvrtd_str; /* post-conversion arg string */
 	/* char *fmttd_str; post-formatting string */

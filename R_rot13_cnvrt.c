@@ -14,7 +14,7 @@ char *R_rot13_cnvrt(char *s)
 	char *encoded;
 
 	/* allocate for encoded, plus null-byte */
-	encoded = malloc(sizeof(*s) * (_strlen(s) + i));
+	encoded = malloc(sizeof(*s) * (_strlen(s) + 1));
 	if (encoded == NULL)
 		return (NULL);
 
