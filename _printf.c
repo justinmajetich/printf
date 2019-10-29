@@ -2,7 +2,7 @@
 /**
 * _printf - A function that prints formatted text
 * @format: Character string
-* Return: formatted text
+* Return: number of chars printed
 */
 int _printf(const char *format, ...)
 {
@@ -22,6 +22,9 @@ int _printf(const char *format, ...)
 			fmt_spec = cpy_fmt_spec(&format[fmt_i]);
 			/* index specifier and send to format manager with arg list*/
 			cnvrtd_str = fmt_mngr(args, fmt_spec);
+			if (!cnvrtd_str)
+				return (-1);
+
 			/* copy formatted string to dest_buff */
 			for (i = 0; cnvrtd_str[i]; i++, dest_i++)
 				dest_buff[dest_i] = cnvrtd_str[i];
