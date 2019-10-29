@@ -28,7 +28,7 @@ int arg_type_identifier(char *fmt_spec)
 			if (index[row].spec[col] == fmt_spec[0])
 			{
 				/* check for size mod */
-				if (fmt_spec[1] == 'l')
+				if ((fmt_spec) && fmt_spec[1] == 'l')
 					return ((index[row].type) + 1);
 				else
 					return (index[row].type);

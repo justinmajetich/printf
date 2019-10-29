@@ -75,7 +75,6 @@ char *u_unsigned_cnvrt(unsigned long int num);
 /* FORMATTING FUNCTIONS */
 
 /* HELPER FUNCTIONS */
-int _atoi(char *);
 int _strlen(char *);
 char *_itoa(long int, char *, int);
 char *_strncpy(char *, const char *, int);
