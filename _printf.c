@@ -20,19 +20,27 @@ int _printf(const char *format, ...)
 		{
 			/* copy format specifier to new string */
 			fmt_spec = cpy_fmt_spec(&format[fmt_i]);
-			/* index specifier and send to format manager with arg list*/
-			cnvrtd_str = fmt_mngr(args, fmt_spec);
-			if (!cnvrtd_str)
-				return (-1);
+			/* if valid fmt specifier */
+			if (fmt_spec)
+			{
+				/* index specifier and send to fmt mngr with arg list*/
+				cnvrtd_str = fmt_mngr(args, fmt_spec);
+				if (!cnvrtd_str)
+					return (-1);
 
-			/* copy formatted string to dest_buff */
-			for (i = 0; cnvrtd_str[i]; i++, dest_i++)
-				dest_buff[dest_i] = cnvrtd_str[i];
-			/* offset increment on next loop interation */
-			dest_i--;
-			fmt_i += _strlen(fmt_spec) - 1;
+				/* copy formatted string to dest_buff */
+				for (i = 0; cnvrtd_str[i]; i++, dest_i++)
+					dest_buff[dest_i] = cnvrtd_str[i];
+				/* offset increment on next loop interation */
+				dest_i--;
+				fmt_i += _strlen(fmt_spec) - 1;
+			}
+			else
+				dest_buff[dest_i] = format[fmt_i];
 		}
-		/* if not '%' copy to dest_buff */
+		/* if '%%', increment to second char and copy to dest_buff */
+		else if ((format[fmt_i] == '%') && (format[fmt_i + 1] == '%'))
+			fmt_i++;
 		else
 			dest_buff[dest_i] = format[fmt_i];
 	}
