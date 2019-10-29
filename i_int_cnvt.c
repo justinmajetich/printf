@@ -1,5 +1,4 @@
 #include "holberton.h"
-#define NULL 0
 /**
 * i_int_cnvrt - Function that converts an integer
 * input to a string

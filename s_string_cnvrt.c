@@ -1,5 +1,4 @@
 #include "holberton.h"
-#define NULL 0
 /**
 * s_string_cnvrt - A function that returns a string
 * @s: returns a string

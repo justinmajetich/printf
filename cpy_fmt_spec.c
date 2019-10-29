@@ -25,9 +25,9 @@ char *cpy_fmt_spec(const char *src)
 				fmt_spec = malloc(sizeof(*src) * (i + 2));
 				if (fmt_spec == NULL)
 					return (NULL);
-				
 				/* return initialized fmt_spec */
-				return (_revstr(_strncpy(fmt_spec, src, (i + 1))));
+				fmt_spec = (_strncpy(fmt_spec, src, (i + 1)));
+				return (_revstr(fmt_spec));
 			}
 		/**
 		 * if given char is not a conversion spec, check to see if

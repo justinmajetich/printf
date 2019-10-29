@@ -13,6 +13,7 @@ int _strlen(char *s)
 	/* Loop through string, checking for null byte */
 	while (s[len] != '\0')
 		len++;
+
 	/* return length variable once null byte is reached */
 	return (len);
 }
@@ -35,11 +36,11 @@ int _atoi(char *s)
 	return (result);
 }
 /**
-* _itoa - Function that converts an int to a char
-* @value: value to be converted to a string
+* _itoa - Function that converts a number to string
+* @number: value to be converted to a string
 * @buffer: array that stores null-termintated string result
 * @base: value of the string
-* Return: Converted string
+* Return: converted string
 */
 char *_itoa(long int number, char *buffer, int base)
 {
@@ -62,19 +63,16 @@ char *_itoa(long int number, char *buffer, int base)
 	while (number)
 	{
 		remainder = number % base;
-		if (remainder >= 10)
-			buffer[i++] = 'a' + (remainder - 10);
-		else
-			buffer[i++] = '0' + remainder;
+		buffer[i++] = '0' + remainder;
 		number /= base;
 	}
+	/* if negative, add sign char */
 	if (sign < 0)
 		buffer[i++] = '-';
 
 	/* terminate string */
 	if (number)
 		buffer[i] = '\0';
-
 	return (_revstr(buffer));
 }
 /**
@@ -96,6 +94,7 @@ char *_strncpy(char *dest, const char *src, int n)
 		dest[i] = src[i];
 		i++;
 	}
+	dest[i] = '\0';
 	while (i < n)
 	{
 		dest[i] = '\0';
@@ -105,7 +104,7 @@ char *_strncpy(char *dest, const char *src, int n)
 }
 /**
  * _revstr - reverse string
- * @s:
+ * @s: string to reverse
  *
  * Return: reversed string
  */
@@ -116,12 +115,11 @@ char *_revstr(char *s)
 	char buff;
 
 	length = _strlen(s);
-
+	
 	if (length % 2 == 0)
 		half = length / 2;
 	else
 		half = (length - 1) / 2;
-
 	for (i = length - 1; i >= half; j++, i--)
 	{
 		buff = rev[j];

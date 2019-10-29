@@ -10,11 +10,11 @@ char *(*ptr_fp_mngr(char *fmt_spec))(char *)
 {
 	/* define struct of function pointers */
 	ptr_fps fps[] = {
-		/*{"s", s_string_cnvrt},
-		{"S", S_nonprint_cnvrt},*/
+		{"s", s_string_cnvrt},
+		/* {"S", S_nonprint_cnvrt},*/
 		{"r", r_reverse_cnvrt},
-		/*{"R", R_rot13_cnvrt},
-		{"p", p_pointer_cnvrt}*/
+		{"R", R_rot13_cnvrt},
+		/* {"p", p_pointer_cnvrt} */
 	};
 
 	int i = 0;

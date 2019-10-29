@@ -1,5 +1,4 @@
 #include "holberton.h"
-#define NULL 0
 /**
 * c_char_cnvrt - A function that prints the character
 * corresponding with its ASCII value

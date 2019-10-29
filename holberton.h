@@ -76,9 +76,10 @@ char *i_int_cnvrt(long int num);
 /* HELPER FUNCTIONS */
 int _atoi(char *);
 int _strlen(char *);
+char *_itoa(long int, char *, int);
 char *_strncpy(char *, const char *, int);
 char *_revstr(char *);
-void _print_string(char *s);
+void _print_string(char *);
 int arg_type_identifier(char *);
 char *cpy_fmt_spec(const char *);
 #endif

@@ -6,7 +6,7 @@
  *
  * Return: function pointer on Success, NULL on Fail
  */
-char *(*li_fp_mngr(char *spec))(char *s, long int arg)
+char *(*li_fp_mngr(char *fmt_spec))(long int arg)
 {
 	/* define struct of function pointers */
 	li_fps fps[] = {
@@ -22,10 +22,10 @@ char *(*li_fp_mngr(char *spec))(char *s, long int arg)
 	while (fps[i].spec)
 	{
 		/* if match is found, return function pointer */
-		if (*fps[i].spec == *s)
+		if (*fps[i].spec == fmt_spec[0])
 			return (fps[i].f);
 		i++;
 	}
 	/* return NULL if match not found */
-	return (NULL)
+	return (NULL);
 }
