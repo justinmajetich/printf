@@ -11,6 +11,9 @@ char *r_reverse_cnvrt(char *s)
 	int i, j; /* looping variables */
 	char *dest; /* target string */
 
+	if (!s)
+		return (NULL);
+
 	/* allocate memory for dest */
 	dest = malloc(sizeof(*s) * (_strlen(s) + 1));
 	if (dest == NULL)

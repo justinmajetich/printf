@@ -9,6 +9,9 @@ char *s_string_cnvrt(char *s)
 	int j;
 	char *print_s;
 
+	if (!s)
+		return (NULL);
+	
 	print_s = malloc(sizeof(char) * (_strlen(s) + 1));
 	if (print_s == NULL)
 		return (NULL);

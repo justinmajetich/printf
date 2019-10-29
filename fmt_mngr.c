@@ -43,6 +43,8 @@ char *fmt_mngr(va_list args, char *fmt_spec)
 				cnvrtd_str = cnvrt_ptr(va_arg(args, char *));
 				break;
 		}
+		if (!cnvrtd_str)
+			return (NULL);
 	/* format converted arg according to flags 
 	fmttd_str = fmt_mngr(fmt_spec, cnvrtd_str);
 	*/

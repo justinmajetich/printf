@@ -51,7 +51,7 @@ int _printf(const char *format, ...)
 	_print_string(dest_buff);
 
 	/* free malloc'd mem */
-	
+
 	/* return char count */
 	return (_strlen(dest_buff));
 }
