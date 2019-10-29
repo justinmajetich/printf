@@ -2,7 +2,7 @@
 
 /**
  * li_fp_mngr - select appropirate long int accepting function
- * @spec: format specifier for arg
+ * @fmt_spec: format specifier for arg
  *
  * Return: function pointer on Success, NULL on Fail
  */

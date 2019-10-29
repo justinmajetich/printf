@@ -28,7 +28,7 @@ char *cpy_fmt_spec(const char *src)
 				/* return initialized fmt_spec */
 				fmt_spec = (_strncpy(fmt_spec, src, (i + 1)));
 				return (_revstr(fmt_spec));
-			}	
+			}
 		/**
 		 * if given char is not a conversion spec, check to see if
 		 * it's on of the format modifiers. we may receive n occurence
