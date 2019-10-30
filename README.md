@@ -5,9 +5,60 @@
 ```c
  int _printf(const char *format, ...);
 ```
-### Examples
 
+### Files
 
+##### Parent Function
+
+File | Description
+-------|----------------------
+\_printf.c | Prints a formatted string to screen
+
+##### Manager Functions
+
+File | Description
+-------|----------------------
+fmt_mngr.c | Directs/retrieves data to/from formatting and conversion functions
+li_fp_mngr.c | Selects appropriate long integer accepting function
+lu_fp_mngr.c | Selects appropriate unsigned long integer accepting function
+ptr_fp_mngr.c | Selects appropriate pointer accepting function
+cpy_fmt_spec.c | Validates format specifier and copies to a new string
+\_print_string.c | Prints a string
+arg_type_identifier.c | Identifies type based on format specifier
+##### Conversion Functions
+
+File | Description
+-------|----------------------
+r_reverse_cnvrt.c | Reverses a string input
+R_rot13_cnvrt.c | Encodes in rot 13 and returns a string
+s_string_cnvrt.c | Prints a string
+S_nonprint_cnvrt.c | 
+p_pointer_cnvrt.c | Pointer address
+c_char_cnvrt.c | Converts a character to a string
+d_decimal_cnvrt.c | Converts a decimal to a string
+i_int_cnvrt.c | Converts an integer to a string
+u_unsigned_cnvrt.c | Converts an unsigned integer to a string
+
+##### Helper Functions
+
+File | Description
+-------|----------------------
+helper_functions.c | File containing the following helper functions:
+- [x] \_strnlen - A function that finds the length of a string
+- [x] \_atoi - A function that converts a char to an in
+- [x] \_itoa - A function that converts a number to a string
+- [x] \_strncpy - A function that copies n bytes of src to dest string
+- [x] \_revstr - A function that reverses a string
+
+##### Accessory Files
+
+File | Description
+-------|----------------------
+holberton.h | header file
+man_page.1 | \_printf manual page
+README.md | Project description
+
+## Specifier Usage
 
 #### Conversion Specifiers
 Format specifiers are implemented as follows: `%[flags][width][.precision][length]type`.
@@ -28,23 +79,13 @@ p | Pointer address
 b | unsigned int argument is converted to binary
 r | prints the reversed string
 R | Encodes the string using rot13
-#### Supported flags
-Flags | Description
--------|----------------------
-\+ | Result is precluded with a plus or minus sign dependant on it's positive or negative value, respectively
-space | Blank space precludes value
-\# | 0 precludes values other than 0
-0 | 0-fills the width from the left to right, in place of spaces
+
 \- | Left-justifies value
 #### Supported width
 Width | Description
 -------|----------------------
 (a number) | Number of characters to be printed (minimum). Blank spaces preclude the value if it's smaller than this width number
 
-#### Supported precision
-Precision | d i u o x X | s
--------|----------|----------------------
-.number | Result is precluded with 0's for each digit over the value to be written | The maximum number of characters to be printed
 #### Length modifiers
 Length | d i | u o x X
 -------|----------|----------------------

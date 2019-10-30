@@ -1,0 +1,69 @@
+.TH _PRINTF 3 2019-10-29 Linux "Linux Programmer's Manual"
+.SH NAME
+.B _printf 
+- print formatted strings
+.SH SYNOPSIS
+.B #include """holberton.h""" 
+.PP
+.B int _printf(const char *\fIformat, ...\fR);
+.SH DESCRIPTION
+.B The _printf function will print formatted strings to the screen.
+.PP
+.B Return Value
+.PP
+If successful, _printf will return the number of characters printed, excluding the null byte.
+.PP
+If _printf encounters an error, return value will be negative.
+.PP
+.SH Conversion Specifiers
+.PP
+c | Single character
+.PP
+s | String of characters
+.PP
+% | %% will write %
+.PP
+d | Single decimal integer
+.PP
+i | Signle decimal integer
+.PP
+u | Unsigned decimal integer
+.PP
+r | prints the reversed string
+.PP
+R | Encodes the string using rot13
+.PP
+.SH Supported Length Modifiers
+.PP
+l | long int for d, i | unsigned long int for u
+.PP
+h | short in for d, i | unsigned short int for u
+.PP
+.SH EXAMPLE
+.PP
+To print the string "Hello, Holberton!" followed by a new line:
+.PP
+	#include "holberton.h"
+
+	_printf("Hello, Holberton!\\n");
+
+To print a date and time in the form "Wednesday October 29th, 2019", followed by a new line, where day and month are pointers to strings, and date and year are int variables:
+.PP
+	#include "holberton.h"
+
+	_printf("%s %s %dth, %d\\n", day, month, date, year);
+.PP
+
+To print "Hello, Holberton!" in reverse, followed by a new line, use the custom conversion specifier r:
+.PP
+	#include "holberton.h"
+.PP
+	char *string = "Hello Holberton!";
+.PP
+	_printf("%r\\n", string);
+.PP 
+.SH SEE ALSO
+.B printf(3), printf(1)
+.PP
+.SH AUTHORS
+Justin Majetich & Kati Fredlund
