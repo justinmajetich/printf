@@ -8,16 +8,14 @@ int _printf(const char *format, ...)
 {
 	va_list args;
 	unsigned int fmt_i, dest_i, i; /* string iterators */
-	char *fmt_spec, *cnvrtd_str; /* isolated format specifier, converted arg */
-	char dest_buff[1024]; /* string to return */
+	char *fmt_spec, *cnvrtd_str, dest_buff[1024]; /* string to return */
 
 	if (!format)
 		return (-1);
 	va_start(args, format);
 	for (fmt_i = dest_i = 0; format[fmt_i]; fmt_i++, dest_i++)
 	{
-		/* check for format specifier */
-		if ((format[fmt_i] == '%') && (format[fmt_i + 1] != '%'))
+		if ((format[fmt_i] == '%') && (format[fmt_i + 1] != '%'))/* check for '%' */
 		{
 			if (format[fmt_i + 1] == '\0')
 			{
@@ -31,17 +29,14 @@ int _printf(const char *format, ...)
 				cnvrtd_str = fmt_mngr(args, fmt_spec);
 				if (!cnvrtd_str)
 					return (-1);
-				/* copy formatted string to dest_buff */
 				for (i = 0; cnvrtd_str[i]; i++, dest_i++)
 					dest_buff[dest_i] = cnvrtd_str[i];
-				/* offset increment on next loop interation */
 				dest_i--;
 				fmt_i += _strlen(fmt_spec) - 1;
 			}
 			else
 				dest_buff[dest_i] = format[fmt_i];
 		}
-		/* if '%%', increment to second char and copy to dest_buff */
 		else if ((format[fmt_i] == '%') && (format[fmt_i + 1] == '%'))
 			dest_buff[dest_i] = format[++fmt_i];
 		else
