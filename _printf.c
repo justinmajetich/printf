@@ -8,37 +8,47 @@ int _printf(const char *format, ...)
 {
 	va_list args;
 	unsigned int fmt_i, dest_i, i; /* string iterators */
-	char *fmt_spec; /* isolated format specifier */
-	char *cnvrtd_str; /* post-conversion arg string */
+	char *fmt_spec, *cnvrtd_str; /* isolated format specifier, converted arg */
 	char dest_buff[1024]; /* string to return */
 
+	if (!format)
+		return (-1);
 	va_start(args, format);
 	for (fmt_i = dest_i = 0; format[fmt_i]; fmt_i++, dest_i++)
 	{
 		/* check for format specifier */
 		if ((format[fmt_i] == '%') && (format[fmt_i + 1] != '%'))
 		{
-			/* copy format specifier to new string */
-			fmt_spec = cpy_fmt_spec(&format[fmt_i]);
-			/* index specifier and send to format manager with arg list*/
-			cnvrtd_str = fmt_mngr(args, fmt_spec);
-			if (!cnvrtd_str)
+			if (format[fmt_i + 1] == '\0')
+			{
+				dest_buff[dest_i] = '\0';
+				_print_string(dest_buff);
 				return (-1);
-
-			/* copy formatted string to dest_buff */
-			for (i = 0; cnvrtd_str[i]; i++, dest_i++)
-				dest_buff[dest_i] = cnvrtd_str[i];
-			/* offset increment on next loop interation */
-			dest_i--;
-			fmt_i += _strlen(fmt_spec) - 1;
+			}
+			fmt_spec = cpy_fmt_spec(&format[fmt_i]); /* copy fmt spec to new str */
+			if (fmt_spec) /* if valid specifier, send to mnger to retrieve fp */
+			{
+				cnvrtd_str = fmt_mngr(args, fmt_spec);
+				if (!cnvrtd_str)
+					return (-1);
+				/* copy formatted string to dest_buff */
+				for (i = 0; cnvrtd_str[i]; i++, dest_i++)
+					dest_buff[dest_i] = cnvrtd_str[i];
+				/* offset increment on next loop interation */
+				dest_i--;
+				fmt_i += _strlen(fmt_spec) - 1;
+			}
+			else
+				dest_buff[dest_i] = format[fmt_i];
 		}
-		/* if not '%' copy to dest_buff */
+		/* if '%%', increment to second char and copy to dest_buff */
+		else if ((format[fmt_i] == '%') && (format[fmt_i + 1] == '%'))
+			dest_buff[dest_i] = format[++fmt_i];
 		else
 			dest_buff[dest_i] = format[fmt_i];
 	}
 	va_end(args);/* free args*/
 	dest_buff[dest_i] = '\0';/* place null byte at end of dest*/
 	_print_string(dest_buff);
-
 	return (_strlen(dest_buff));
 }

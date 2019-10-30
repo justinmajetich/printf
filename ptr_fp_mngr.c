@@ -2,7 +2,7 @@
 
 /**
  * ptr_fp_mngr - select appropirate pointer accepting function
- * @spec: format specifier for arg
+ * @fmt_spec: format specifier for arg
  *
  * Return: function pointer on Success, NULL on Fail
  */
