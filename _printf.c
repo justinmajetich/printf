@@ -11,6 +11,8 @@ int _printf(const char *format, ...)
 	char *fmt_spec, *cnvrtd_str; /* isolated format specifier, converted arg */
 	char dest_buff[1024]; /* string to return */
 
+	if (!format)
+		return (-1);
 	va_start(args, format);
 	for (fmt_i = dest_i = 0; format[fmt_i]; fmt_i++, dest_i++)
 	{
