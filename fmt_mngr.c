@@ -1,47 +1,49 @@
 #include "holberton.h"
 /**
-* fmt_mngr - directs/retrieves data to/from formatting and
-* conversion funcs
+* fmt_mngr - selects and calls pointer to function
 * @args: arg list
-* @fmt_spec: pointer to start of format spec in format string
+* @fmt_spec: format spec (reversed, i.e. "il%")
 *
 * Return: converted string on Success, NULL on Fail
 */
 char *fmt_mngr(va_list args, char *fmt_spec)
 {
-	int arg_type = 0;
-	char *cnvrtd_str; /* post-conversion arg string */
+	/* supported conversion functions */
+	func_ps fps[] = {
+		{"d", d_decimal_cnvrt}, {"dl", ld_decimal_cnvrt}, /* long variant */
+		{"i", i_int_cnvrt}, {"il", li_int_cnvrt}, /* long variant */
+		{"c", c_char_cnvrt},
+		{"u", u_unsigned_cnvrt}, {"ul", lu_unsigned_cnvrt}, /* long variant */
+		{"o", o_octal_cnvrt}, {"ol", lo_octal_cnvrt}, /* long variant */
+		{"x", x_lowhex_cnvrt}, {"xl", lx_lowhex_cnvrt}, /* long variant */
+		{"X", X_uphex_cnvrt}, {"Xl", lX_uphex_cnvrt}, /* long variant */
+		{"b", b_binary_cnvrt}, {"bl", lb_binary_cnvrt}, /* long variant */
+		{"s", s_string_cnvrt},
+		{"r", r_reverse_cnvrt},
+		{"R", R_rot13_cnvrt},
+		{NULL, NULL}
+	};
+	int i = 0; /* iterator */
+	char *(*fp)(va_list); /* function pointer */
 
-	char *(*cnvrt_li)(long int);
-	char *(*cnvrt_lu)(unsigned long);
-	char *(*cnvrt_ptr)(char *);
-
-	/* identify arg type */
-	arg_type = arg_type_identifier(fmt_spec);
-	/* retrieve conversion function by arg type */
-	switch (arg_type)
+	while (fps[i].spec)
 	{
-		case 0:
-			/* assign function and to retrieve converted arg */
-			cnvrt_li = li_fp_mngr(fmt_spec);
-			cnvrtd_str = cnvrt_li(va_arg(args, int));
-			break;
-		case 1:
-			cnvrt_li = li_fp_mngr(fmt_spec);
-			cnvrtd_str = cnvrt_li(va_arg(args, long int));
-			break;
-		case 2:
-			cnvrt_lu = lu_fp_mngr(fmt_spec);
-			cnvrtd_str = cnvrt_lu(va_arg(args, unsigned int));
-			break;
-		case 3:
-			cnvrt_lu = lu_fp_mngr(fmt_spec);
-			cnvrtd_str = cnvrt_lu(va_arg(args, unsigned long));
-			break;
-		case 4:
-			cnvrt_ptr = ptr_fp_mngr(fmt_spec);
-			cnvrtd_str = cnvrt_ptr(va_arg(args, char *));
-			break;
+		/* if match is found, assign pointer and call with args */
+		if (*fps[i].spec == fmt_spec[0])
+		{
+			if (fmt_spec[1] == 'l')
+			{
+				fp = fps[++i].f;
+				return (fp(args));	
+			}
+			else
+			{
+				fp = fps[i].f;
+				return (fp(args));
+			}
+		}
+		i++;
 	}
-	return (cnvrtd_str);
+	/* if no match, return NULL */
+	return (NULL);
 }

@@ -1,32 +1,35 @@
 #include "holberton.h"
 /**
-* s_string_cnvrt - A function that returns a string
-* @s: returns a string
-* Return: The string input
+* s_string_cnvrt - a function that copies a string
+* @args: argument to be copies
+*
+* Return: copied string
 */
-char *s_string_cnvrt(char *s)
+char *s_string_cnvrt(va_list args)
 {
 	int j;
-	char *print_s;
+	char *arg = va_arg(args, char *);
+	char *dest;
 
-	/* if NULL, return "(nil)" */
-	if (!s)
+	/* if NULL, return "(null)" */
+	if (!arg)
 	{
-		print_s = malloc(sizeof(char) * 7);
-		if (print_s == NULL)
+		dest = malloc(sizeof(char) * 7);
+		if (dest == NULL)
 			return (NULL);
-		print_s = "(null)";
+		dest = "(null)";
 	}
 	else
 	{
-		print_s = malloc(sizeof(char) * (_strlen(s) + 1));
-		if (print_s == NULL)
+		dest = malloc(sizeof(char) * (_strlen(arg) + 1));
+		if (dest == NULL)
 			return (NULL);
-		for (j = 0; s[j] != '\0'; j++)
-			print_s[j] = s[j];
-		print_s[j] = '\0';
-	}
 
+		/* copy arg to buffer */
+		for (j = 0; arg[j] != '\0'; j++)
+			dest[j] = arg[j];
+		dest[j] = '\0';
+	}
 	/* return copied string */
-	return (print_s);
+	return (dest);
 }
