@@ -1,4 +1,6 @@
 #include "holberton.h"
+void _print_string(char *s);
+void _free(char *a, char *b);
 /**
 * _printf - A function that prints formatted text
 * @format: Character string
@@ -45,5 +47,33 @@ int _printf(const char *format, ...)
 	va_end(args);/* free args*/
 	dest_buff[dest_i] = '\0';/* place null byte at end of dest*/
 	_print_string(dest_buff);
+	_free(fmt_spec, cnvrtd_str);
 	return (_strlen(dest_buff));
+}
+
+/**
+ * _free - free multiple buffers
+ * @a: string to free
+ * @b: string to free
+ */
+void _free(char *a, char *b)
+{
+	if (a)
+		free(a);
+	if (b)
+		free(b);
+}
+/**
+ * _print_string - print string
+ * @s: string to print
+ */
+void _print_string(char *s)
+{
+	int i = 0;
+
+	while (s[i])
+	{
+		write(1, &s[i], 1);
+		i++;
+	}
 }

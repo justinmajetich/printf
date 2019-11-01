@@ -9,68 +9,41 @@
 
 /* STRUCTURES */
 /**
- * struct li_func_pointers - functions to convert long int args
- * @spec: conversion specifier
+ * struct func_pointers - conversion functions
+ * @spec: format specifier
  * @f: function pointer
  */
-typedef struct li_func_pointers
+typedef struct function_pointers
 {
 	char *spec;
-	char *(*f)(long int);
-} li_fps;
-
-/**
- * struct lu_func_pointers - functions to convert long unsigned args
- * @spec: conversion specifier
- * @f: function pointer
- */
-typedef struct lu_func_pointers
-{
-	char *spec;
-	char *(*f)(unsigned long);
-} lu_fps;
-
-/**
- * struct ptr_func_pointers - functions to convert pointer args
- * @spec: conversion specifier
- * @f: function pointer
- */
-typedef struct ptr_func_pointers
-{
-	char *spec;
-	char *(*f)(char *);
-} ptr_fps;
-
-/**
- * struct arg_type_index - stores conversion specs with data type signifier
- * @spec: conversion spec(s)
- * @type: data type
- */
-typedef struct arg_type_index
-{
-		char *spec;
-		int type;
-} arg_t;
+	char *(*f)(va_list);
+} func_ps;
 
 /* PARENT FUNCTION */
 int _printf(const char *format, ...);
 
 /* MANAGER FUNCTIONS */
 char *fmt_mngr(va_list, char *);
-char *(*li_fp_mngr(char *))(long int);
-char *(*lu_fp_mngr(char *))(unsigned long);
-char *(*ptr_fp_mngr(char *))(char *);
 
 /* CONVERSION FUNCTIONS */
-char *r_reverse_cnvrt(char *s);
-char *R_rot13_cnvrt(char *s);
-char *s_string_cnvrt(char *s);
-char *S_nonprint_cnvrt(char *);
-char *p_pointer_cnvrt(char *);
-char *c_char_cnvrt(long int c);
-char *d_decimal_cnvrt(long int num);
-char *i_int_cnvrt(long int num);
-char *u_unsigned_cnvrt(unsigned long int num);
+char *r_reverse_cnvrt(va_list);
+char *R_rot13_cnvrt(va_list);
+char *s_string_cnvrt(va_list);
+char *c_char_cnvrt(va_list);
+char *d_decimal_cnvrt(va_list);
+char *ld_decimal_cnvrt(va_list);
+char *i_int_cnvrt(va_list);
+char *li_int_cnvrt(va_list);
+char *u_unsigned_cnvrt(va_list);
+char *lu_unsigned_cnvrt(va_list);
+char *o_octal_cnvrt(va_list);
+char *lo_octal_cnvrt(va_list);
+char *x_lowhex_cnvrt(va_list);
+char *lx_lowhex_cnvrt(va_list);
+char *X_uphex_cnvrt(va_list);
+char *lX_uphex_cnvrt(va_list);
+char *b_binary_cnvrt(va_list);
+char *lb_binary_cnvrt(va_list);
 
 /* FORMATTING FUNCTIONS */
 
@@ -80,6 +53,5 @@ char *_itoa(long int, char *, int);
 char *_strncpy(char *, const char *, int);
 char *_revstr(char *);
 void _print_string(char *);
-int arg_type_identifier(char *);
 char *cpy_fmt_spec(const char *);
 #endif
